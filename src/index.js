@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import User from './store/reducer/user'
+import Users from './store/reducer/users'
+import "bootstrap/dist/css/bootstrap.css";
+
+const rootReducer = combineReducers({
+  user: User,
+  users: Users
+})
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={store}>
+      <App />
+    </Provider>,
   document.getElementById('root')
 );
 
